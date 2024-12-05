@@ -216,7 +216,7 @@ endif()
 
 set(LIB_INCLUDE_DIRS
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_FULL_INCLUDEDIR}>)
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 # Build the static library.
 if(LIBDEFLATE_BUILD_STATIC_LIB)
@@ -299,7 +299,7 @@ export(EXPORT libdeflate_exported_targets
 install(EXPORT libdeflate_exported_targets
         NAMESPACE libdeflate::
         FILE libdeflate-targets.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libdeflate)
+        DESTINATION cmake)
 
 # Generate and install the CMake package version and config files.
 write_basic_package_version_file(libdeflate-config-version.cmake
@@ -308,10 +308,10 @@ write_basic_package_version_file(libdeflate-config-version.cmake
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/libdeflate-config.cmake.in
     libdeflate-config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libdeflate)
+    INSTALL_DESTINATION cmake)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libdeflate-config.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/libdeflate-config-version.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libdeflate)
+        DESTINATION cmake)
 
 # Build the programs subdirectory if needed.
 if(LIBDEFLATE_BUILD_GZIP OR LIBDEFLATE_BUILD_TESTS)
